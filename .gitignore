@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local data and secrets
+.data/
+.env
+.env.local
+.env.*.local
+.test-data/
