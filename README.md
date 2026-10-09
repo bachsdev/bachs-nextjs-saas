@@ -112,6 +112,13 @@ The smoke test uses dummy keys and fixture API responses. It makes no real
 Bachs payment. Run the sandbox checkout above to verify a real integration.
 CI runs the same gates on Node.js 22 and 24 without secrets.
 
+A manual SDK-backed sandbox check on October 9, 2026 also passed: hosted
+checkout and the first payment, a real signed subscription event forwarded
+through the CLI after replay, stored access activation, and the signed-in
+demo customer's billing portal. The user submitted the simulated card payment.
+A subsequent billing-cycle renewal remains unverified. Lifecycle tests above
+use fixture events; they are not evidence of a real second charge.
+
 To run an individual gate:
 
 ```bash
