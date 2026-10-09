@@ -5,7 +5,7 @@ subscriptions using the official [Bachs SDK](https://github.com/bachsdev/bachs-n
 billing through the Bachs customer portal.
 
 Follow the [SaaS subscriptions walkthrough](https://docs.bachs.io/build/use-cases/saas-subscriptions)
-for the payment flow and the [Build with AI subscription workflow](https://docs.bachs.io/build/ai#sell-subscriptions)
+for the payment flow and the [subscription prompt](https://docs.bachs.io/build/ai/prompts#sell-subscriptions)
 for a prompt that adapts it to your app.
 
 **This is a local development starter.** Every visitor shares one demo user,
@@ -154,17 +154,13 @@ Production subscriptions are not shared with sandbox.
 ## Building with an AI assistant
 
 `AGENTS.md` explains the project and checks; `CLAUDE.md` points to it.
-[Build with AI](https://docs.bachs.io/build/ai) has three complete workflows
-and an optional Bachs skill.
 
-The shared [Bachs skill](skills/bachs/SKILL.md) covers payments, subscriptions and
-marketplaces. You can use it in any app, independently of this starter.
-
-For Claude Code, copy skills/bachs/SKILL.md into your app at
-.claude/skills/bachs/SKILL.md, then use /bachs followed by what you want to
-build. For another tool that supports Agent Skills, install the same file using
-its instructions. Prefer no installation? Copy one of the three prompts from
-Build with AI; each includes the rules it needs.
+To extend this starter with a coding assistant, use the
+[Bachs prompts](https://docs.bachs.io/build/ai/prompts), or install the
+[Bachs skill](https://github.com/bachsdev/bachs-skills) so your assistant follows
+the Bachs rules on every task. The skill works in any app, not only this
+starter. See [docs.bachs.io/build/ai/skills](https://docs.bachs.io/build/ai/skills)
+for install commands for Claude Code, Cursor, GitHub Copilot and Codex.
 
 ## License
 
