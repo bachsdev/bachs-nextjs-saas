@@ -15,9 +15,8 @@ store before deploying. Demo authentication refuses live API keys.
 ## SDK dependency
 
 This starter imports @bachs/sdk for checkout, product setup, the customer
-portal and webhook verification. The tested SDK implementation is packaged in
-vendor/ so npm ci works before its npm release. The current npm 0.0.1
-package is a placeholder. See [package provenance and the npm transition](vendor/README.md).
+portal and webhook verification. `npm ci` installs it from npm, pinned to
+version 1.0.0 in package.json and package-lock.json.
 
 ## Run in sandbox
 

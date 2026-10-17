@@ -26,8 +26,8 @@ https://docs.bachs.io/build/use-cases/saas-subscriptions.
 
 - Use @bachs/sdk for supported server operations and webhooks.constructEvent for
   signature verification. Do not reimplement the HTTP transport or verifier.
-- The packaged SDK in vendor/ is temporary until the matching npm release.
-  Read vendor/README.md before changing the dependency.
+- @bachs/sdk installs from npm at an exact version. When upgrading it, update
+  package.json and package-lock.json together and run npm run verify.
 
 - Docs: read the Bachs page for the task. Every page is available as Markdown
   by adding .md to its URL, and https://docs.bachs.io/llms.txt lists every
