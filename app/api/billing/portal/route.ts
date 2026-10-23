@@ -1,5 +1,5 @@
 import { createPortalSession } from "@/lib/bachs";
-import { BachsApiError } from "@bachs/sdk";
+import { BachsApiError, BachsConfigError } from "@bachs/sdk";
 import { getCurrentUser } from "@/lib/auth";
 import { getCustomerId } from "@/lib/store";
 
@@ -16,7 +16,11 @@ export async function POST() {
     const { url } = await createPortalSession(customerId);
     return Response.redirect(url, 303);
   } catch (err) {
-    console.error("Bachs portal session failed", err instanceof BachsApiError ? { statusCode: err.statusCode, code: err.errorCode, requestId: err.requestId } : "Request did not complete");
+    // A configuration error (such as a live key without BACHS_ENVIRONMENT=production)
+    // is refused before any request; its message names the problem and holds no secrets.
+    console.error("Bachs portal session failed",
+      err instanceof BachsApiError ? { statusCode: err.statusCode, code: err.errorCode, requestId: err.requestId }
+        : err instanceof BachsConfigError ? err.message : "Request did not complete");
     return new Response("Could not open billing. Try again.", { status: 502 });
   }
 }

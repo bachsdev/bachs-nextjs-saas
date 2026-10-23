@@ -151,6 +151,20 @@ describe("portal route", () => {
     vi.mocked(createPortalSession).mockRejectedValue(new Error("offline"));
     expect((await portal()).status).toBe(502);
   });
+  it("logs the status code of an API refusal", async () => {
+    vi.mocked(store.getCustomerId).mockResolvedValue("cust_saved");
+    vi.mocked(createPortalSession).mockRejectedValue(new BachsApiError(404, { error_code: "CUSTOMER_NOT_FOUND", detail: "No customer" }));
+    expect((await portal()).status).toBe(502);
+    expect(console.error).toHaveBeenCalledWith("Bachs portal session failed",
+      expect.objectContaining({ statusCode: 404, code: "CUSTOMER_NOT_FOUND" }));
+  });
+  it("names a configuration error instead of calling it a network failure", async () => {
+    vi.mocked(store.getCustomerId).mockResolvedValue("cust_saved");
+    vi.mocked(createPortalSession).mockRejectedValue(new BachsConfigError("environment is \"sandbox\" but the API key is a production key"));
+    expect((await portal()).status).toBe(502);
+    expect(console.error).toHaveBeenCalledWith("Bachs portal session failed",
+      'environment is "sandbox" but the API key is a production key');
+  });
 });
 
 describe("webhook route", () => {
@@ -198,6 +212,7 @@ it("releases a checkout reservation when SDK configuration rejects before sendin
   expect((await checkout(request('{"plan":"monthly"}'))).status).toBe(502);
   expect(store.releaseCheckout).toHaveBeenCalledWith("user_1", "operation_1");
   expect(store.markCheckoutUncertain).not.toHaveBeenCalled();
+  expect(console.error).toHaveBeenCalledWith("Bachs refused the checkout", "Missing key");
 });
 it("keeps an SDK 5xx refusal uncertain", async () => {
   vi.mocked(createCheckoutSession).mockRejectedValue(new BachsApiError(503, {}, undefined, undefined, true));

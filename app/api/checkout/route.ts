@@ -47,6 +47,8 @@ export async function POST(req: Request) {
   } catch (err) {
     if ((err instanceof BachsApiError && !err.outcomeUnknown) || err instanceof BachsConfigError) {
       await releaseCheckout(user.id, attempt.key);
+      console.error("Bachs refused the checkout",
+        err instanceof BachsApiError ? { statusCode: err.statusCode, code: err.errorCode, requestId: err.requestId } : err.message);
       return Response.json({ error: "Could not start checkout" }, { status: 502 });
     }
     // This also covers a local write failing after Bachs created the session.
