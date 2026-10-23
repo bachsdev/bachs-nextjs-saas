@@ -18,7 +18,7 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@bachs/sdk": "1.0.0",
+    "@bachs/sdk": "2.0.0",
     "next": "^16.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"

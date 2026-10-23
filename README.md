@@ -16,7 +16,7 @@ store before deploying. Demo authentication refuses live API keys.
 
 This starter imports @bachs/sdk for checkout, product setup, the customer
 portal and webhook verification. `npm ci` installs it from npm, pinned to
-version 1.0.0 in package.json and package-lock.json.
+version 2.0.0 in package.json and package-lock.json.
 
 ## Run in sandbox
 
