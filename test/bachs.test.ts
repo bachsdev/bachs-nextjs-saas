@@ -56,7 +56,7 @@ describe("Bachs client", () => {
       detail: "Invalid product", error_code: "PRODUCT_NOT_FOUND", doc_url: "https://docs.bachs.io/errors",
     }, { status: 400 }));
     await expect(createCheckoutSession(input)).rejects.toMatchObject({
-      status: 400, errorCode: "PRODUCT_NOT_FOUND", message: "Invalid product",
+      statusCode: 400, errorCode: "PRODUCT_NOT_FOUND", message: "Invalid product",
       body: expect.objectContaining({ doc_url: "https://docs.bachs.io/errors" }),
     });
     expect(send).toHaveBeenCalledTimes(1);

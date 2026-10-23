@@ -16,7 +16,7 @@ export async function POST() {
     const { url } = await createPortalSession(customerId);
     return Response.redirect(url, 303);
   } catch (err) {
-    console.error("Bachs portal session failed", err instanceof BachsApiError ? { status: err.status, code: err.errorCode, requestId: err.requestId } : "Request did not complete");
+    console.error("Bachs portal session failed", err instanceof BachsApiError ? { statusCode: err.statusCode, code: err.errorCode, requestId: err.requestId } : "Request did not complete");
     return new Response("Could not open billing. Try again.", { status: 502 });
   }
 }

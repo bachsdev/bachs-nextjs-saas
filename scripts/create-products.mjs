@@ -43,7 +43,7 @@ for (const plan of plans) {
     }, { idempotencyKey: randomUUID() });
   } catch (err) {
     console.error("Could not confirm product creation.",
-      err instanceof BachsApiError ? { status: err.status, code: err.errorCode } : "Request did not complete");
+      err instanceof BachsApiError ? { statusCode: err.statusCode, code: err.errorCode } : "Request did not complete");
     console.error("Check products in the dashboard before rerunning; a lost response may still have created one.");
     process.exit(1);
   }
